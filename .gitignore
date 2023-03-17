@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Logger/AbstractLoggerAsync.cs
+/.gitignore
+/Logger/ConsoleLoggerAsync.cs
+/Logger/FileLoggerAsync.cs
+/Logger/StreamLoggerAsync.cs
+/LoggerTest/ConsoleLoggerAsyncTests.cs
+/LoggerTest/FileLoggerAsyncTests.cs
+/LoggerTest/StreamLoggerAsyncTests.cs
+/.gitignore
