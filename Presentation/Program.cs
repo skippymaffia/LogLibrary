@@ -14,7 +14,7 @@ internal class Program
         };
     }
 
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         //-------------
         ILogger logger = new ConsoleLogger();
@@ -23,7 +23,7 @@ internal class Program
         {
             log = GetSimpleContent(i, 1);
             RunLog(logger, log);
-            RunLogAsync(logger, log);
+            await RunLogAsync(logger, log);
         }
 
         //-------------
@@ -33,10 +33,10 @@ internal class Program
         {
             log = GetSimpleContent(i, 2);
             RunLog(logger, log);
-            RunLogAsync(logger, log);
+            await RunLogAsync(logger, log);
         }
 
-        string[] files = Directory.GetFiles(dir, "skippy-*");
+        string[] files = Directory.GetFiles(dir, "log-*");
         foreach (string file in files)
         {
             Console.WriteLine(file);
@@ -49,7 +49,7 @@ internal class Program
             logger = new StreamLogger(stream);
 
             RunLog(logger, log);
-            RunLogAsync(logger, log);
+            await RunLogAsync(logger, log);
 
             stream.Position = 0;
             var reader = new StreamReader(stream);
@@ -67,7 +67,7 @@ internal class Program
             logger = new StreamLogger(stream);
 
             RunLog(logger, log);
-            RunLogAsync(logger, log);
+            await RunLogAsync(logger, log);
 
             stream.Position = 0;
             var reader = new StreamReader(stream);
@@ -79,21 +79,22 @@ internal class Program
         }
         
         //cleaning
-        File.Delete(fileName);
-        foreach (var file in files) 
-        {
-            File.Delete(file); 
-        }
+        //File.Delete(fileName);
+        //foreach (var file in files) 
+        //{
+        //    File.Delete(file); 
+        //}
 
         Console.WriteLine("The End!");
     }
 
     private static async Task RunLogAsync(ILogger logger, string log)
     {
-        await logger.InfoAsync(log);//.GetAwaiter().GetResult();
-        await logger.DebugAsync(log);
-        await logger.ErrorAsync(log);
-        await logger.WarningAsync(log);
+        var x = log + "-async";
+        await logger.InfoAsync(x);
+        await logger.DebugAsync(x);
+        await logger.ErrorAsync(x);
+        await logger.WarningAsync(x);
     }
 
     private static void RunLog(ILogger logger, string log)

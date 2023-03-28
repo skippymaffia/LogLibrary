@@ -1,4 +1,6 @@
-﻿namespace Logger;
+﻿using Logger.Common;
+
+namespace Logger;
 
 /// <summary>
 /// A logging interface for avoid the code duplications.
@@ -6,7 +8,7 @@
 public interface ILogger
 {
     const int LogLength = 1000;
-
+    #region SIMPLE LOG
     /// <summary>
     /// The heart of the logging logic.
     /// </summary>
@@ -72,6 +74,7 @@ public interface ILogger
     {
         return TryLog(LogType.warning, message);
     }
+    #endregion SIMPLE LOG
 
     #region ASYNC PART
     /// <summary>
